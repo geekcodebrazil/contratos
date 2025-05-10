@@ -1,0 +1,694 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Segoe+UI:wght@400;500;600&display=swap');
+
+:root {
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-end: #16213e;
+    --text-primary: #e0e0ff;
+    --text-secondary: #bd93f9; /* Roxo claro */
+    --text-placeholder-highlight: #ff79c6; /* Rosa neon */
+    --accent-green: #50fa7b;
+    --accent-pink: #ff79c6;
+    --accent-purple: #bd93f9;
+    --accent-yellow: #f1fa8c;
+    --dark-gray: #282a36; /* Fundo de containers, inputs */
+    --medium-gray: #44475a; /* Bordas, divisores */
+    --light-gray: #6272a4; /* Texto secundário, placeholders sutis */
+    --container-bg: rgba(40, 42, 54, 0.85); /* #282a36 com alpha */
+    --input-bg: #1e1f29;
+    --button-bg: var(--accent-purple);
+    --button-hover-bg: #9a6dd7;
+    --button-danger-bg: #ff5555;
+    --button-danger-hover-bg: #e03030;
+    --button-success-bg: var(--accent-green);
+    --button-success-hover-bg: #3cc96a;
+    --link-color: var(--accent-pink);
+    --link-hover-color: var(--accent-yellow);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-primary);
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px; /* Adicionado padding ao body */
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha ao topo para forms longos */
+    width: 100%;
+}
+
+.container {
+    max-width: 950px;
+    width: 100%; /* Para ocupar o espaço no .main-content */
+    margin: 30px auto;
+    background-color: var(--container-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--medium-gray);
+}
+
+.disclaimer {
+    background-color: rgba(241, 250, 140, 0.1); /* Amarelo com alpha */
+    color: var(--accent-yellow);
+    padding: 15px 20px;
+    border: 1px solid var(--accent-yellow);
+    border-radius: 6px;
+    margin-bottom: 25px;
+    font-size: 0.9em;
+    text-align: justify;
+}
+.disclaimer strong {
+    color: var(--accent-yellow);
+    font-weight: 600;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--accent-green);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 2.2em;
+    text-shadow: 0 0 5px var(--accent-green);
+}
+h1 .pink-neon { /* Para possível uso futuro, se quiser um título com duas cores */
+    color: var(--accent-pink);
+    text-shadow: 0 0 5px var(--accent-pink);
+}
+
+
+p {
+    margin-bottom: 18px;
+}
+
+fieldset {
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: rgba(0,0,0,0.1); /* Fundo sutil para fieldset */
+}
+
+legend {
+    font-weight: 600;
+    color: var(--accent-purple);
+    padding: 8px 15px;
+    font-size: 1.3em;
+    background-color: var(--medium-gray);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid var(--light-gray);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    color: var(--text-primary);
+    background-color: var(--input-bg);
+    font-style: normal;
+}
+textarea::placeholder, input::placeholder {
+    color: var(--light-gray);
+    opacity: 0.7;
+}
+
+textarea.has-default-text {
+    color: var(--text-primary); /* Cor para texto default no formulário */
+    /* font-style: italic; */
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Para ícone do calendário em temas escuros */
+}
+
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent-purple);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(189, 147, 249, 0.3); /* Roxo claro com alpha */
+    color: var(--text-primary);
+    font-style: normal;
+}
+
+input:required:invalid:not(:placeholder-shown),
+textarea:required:invalid:not(:placeholder-shown),
+select:required:invalid {
+    border-color: var(--button-danger-bg);
+}
+input:required:focus:invalid:not(:placeholder-shown),
+textarea:required:focus:invalid:not(:placeholder-shown),
+select:required:focus:invalid {
+    border-color: var(--button-danger-bg);
+    box-shadow: 0 0 0 0.25rem rgba(255, 85, 85, 0.3);
+}
+
+button {
+    background-color: var(--button-bg);
+    color: var(--dark-gray); /* Texto escuro para contraste com botões claros/vibrantes */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+button:active {
+    transform: translateY(0px);
+}
+
+button[type="reset"] {
+    background-color: var(--medium-gray);
+    color: var(--text-primary);
+}
+button[type="reset"]:hover {
+    background-color: var(--light-gray);
+}
+
+.actions {
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+
+.form-persistence-actions {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.form-persistence-actions .utility-button {
+    background-color: var(--light-gray);
+    color: var(--text-primary);
+    font-size: 0.9em;
+    padding: 10px 18px;
+    margin: 5px; /* Para empilhar melhor em mobile */
+}
+.form-persistence-actions .utility-button:hover {
+    background-color: var(--medium-gray);
+}
+
+.form-persistence-actions .utility-button.danger {
+    background-color: var(--button-danger-bg);
+    color: var(--dark-gray);
+}
+.form-persistence-actions .utility-button.danger:hover {
+    background-color: var(--button-danger-hover-bg);
+}
+.form-persistence-actions .utility-button.saved {
+    background-color: var(--button-success-bg);
+    color: var(--dark-gray);
+    cursor: default;
+}
+.form-persistence-actions .utility-button.saved:hover {
+    background-color: var(--button-success-hover-bg);
+}
+
+#posGeracao {
+    text-align: center;
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid var(--button-success-bg);
+    background-color: rgba(80, 250, 123, 0.1); /* Verde com alpha */
+    border-radius: 6px;
+    color: var(--accent-green);
+}
+#posGeracao p {
+    color: var(--text-primary);
+}
+#posGeracao p strong {
+    color: var(--accent-green);
+}
+
+#posGeracao button {
+    background-color: var(--button-success-bg);
+    color: var(--dark-gray);
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+#posGeracao button:hover {
+    background-color: var(--button-success-hover-bg);
+}
+
+#posGeracao button.secondary-action {
+    background-color: var(--accent-pink);
+}
+#posGeracao button.secondary-action:hover {
+    background-color: #e060b0;
+}
+#posGeracao button.tertiary-action {
+    background-color: var(--accent-yellow);
+    color: var(--dark-gray);
+}
+#posGeracao button.tertiary-action:hover {
+    background-color: #d8e078;
+}
+
+#posGeracao hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid var(--accent-green);
+    opacity: 0.5;
+}
+
+#opcoes_prestacao_servicos,
+#opcoes_lgpd {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px dashed var(--light-gray);
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.15);
+}
+
+#opcoes_prestacao_servicos input[type="checkbox"],
+#opcoes_lgpd input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    transform: scale(1.3);
+    accent-color: var(--accent-purple); /* Cor do checkbox */
+}
+
+#opcoes_prestacao_servicos label,
+#opcoes_lgpd label {
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+#opcoes_prestacao_servicos small,
+#opcoes_lgpd small {
+    display: block;
+    margin-top: 10px;
+    color: var(--light-gray);
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+#save-feedback {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.9em;
+    color: var(--accent-green);
+}
+
+.clausulas-gerais-container textarea,
+.clausulas-especificas-container textarea {
+    min-height: 100px;
+}
+
+.clausulas-especificas-container {
+    display: none;
+    padding: 20px;
+    margin-top: 15px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.1);
+}
+.clausulas-especificas-container h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.15em;
+    color: var(--accent-pink);
+    border-bottom: 1px solid var(--medium-gray);
+    padding-bottom: 8px;
+}
+
+.tooltip-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: var(--accent-purple);
+    color: var(--dark-gray);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: bold;
+    cursor: help;
+    margin-left: 5px;
+    position: relative;
+}
+.tooltip-icon .tooltiptext {
+    visibility: hidden;
+    width: 240px;
+    background-color: var(--dark-gray);
+    color: var(--text-primary);
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 135%;
+    left: 50%;
+    margin-left: -120px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.85em;
+    font-weight: normal;
+    border: 1px solid var(--medium-gray);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.tooltip-icon .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--dark-gray) transparent transparent transparent;
+}
+.tooltip-icon:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.clausula-variable-input-group {
+    background-color: rgba(189, 147, 249, 0.08); /* Roxo com alpha */
+    padding: 15px;
+    border: 1px solid var(--accent-purple);
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.clausula-variable-input-group h4 { /* Se houver título dentro */
+    color: var(--accent-purple);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+.clausula-variable-input-group label {
+    font-size: 0.95em;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+.clausula-variable-input-group input[type="number"],
+.clausula-variable-input-group input[type="text"],
+.clausula-variable-input-group select {
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+}
+
+
+/* Footer */
+.site-footer {
+    flex-shrink: 0; /* Fixa no final */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px; /* Espaço acima do rodapé */
+    border-top: 1px solid var(--medium-gray);
+    font-size: 0.9em;
+    width: 100%;
+}
+.footer-links a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+.footer-links a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+.footer-links span {
+    color: var(--light-gray);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.9em;
+    }
+    button,
+    .form-persistence-actions .utility-button {
+        padding: 12px 18px; /* Aumentar padding para toque */
+        font-size: 1em;
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    .actions button:last-child,
+    .form-persistence-actions .utility-button:last-child {
+        margin-bottom: 0;
+    }
+    .form-persistence-actions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+        width: calc(100% - 20px);
+        padding: 12px; /* Consistente com botões */
+    }
+    fieldset {
+        padding: 20px;
+    }
+    legend {
+        font-size: 1.2em;
+    }
+    .tooltip-icon .tooltiptext {
+        width: 200px;
+        margin-left: -100px;
+    }
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-links a, .footer-links span {
+        margin-bottom: 8px;
+    }
+    .footer-links span { display: none; } /* Esconde separadores em mobile */
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6em;
+    }
+    .container {
+        padding: 15px;
+        margin-top: 15px;
+    }
+    legend {
+        font-size: 1.1em;
+    }
+    .clausula-variable-input-group { padding: 10px; }
+}
+
+/* Estilos para o contrato gerado (impressão e visualização) */
+#contratoParaImpressao { display: none; } /* Mantém escondido por padrão */
+
+#contratoParaImpressao body { /* Estilos dentro do iframe/nova janela */
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    color: #000; /* Cor de texto padrão para impressão */
+    background-color: white !important; /* Fundo branco para impressão */
+}
+#contratoParaImpressao .contrato-container {
+    width: 100%;
+    max-width: 210mm;
+    min-height: 297mm; /* Aproximado A4 */
+    padding: 2cm 1.8cm; /* Margens típicas de documento */
+    margin: 1cm auto;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5); /* Sombra para visualização em tela */
+}
+#contratoParaImpressao h1.contrato-titulo { /* Título dentro do contrato */
+    text-align: center;
+    font-size: 14pt;
+    margin-top:0;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+    font-family: Arial, sans-serif; /* Resetar fonte para o contrato */
+    text-shadow: none; /* Remover text-shadow do tema */
+}
+#contratoParaImpressao h2.clausula-titulo {
+    font-size: 11.5pt;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #000;
+}
+#contratoParaImpressao p {
+    margin-bottom: 12px;
+    text-align: justify;
+    text-indent: 2.5em; /* Indentação de parágrafo */
+    color: #000;
+}
+#contratoParaImpressao .qualificacao p,
+#contratoParaImpressao .assinaturas p,
+#contratoParaImpressao .rodape-contrato p {
+    text-indent: 0; /* Sem indentação para estas seções */
+}
+#contratoParaImpressao strong { font-weight: bold; color: #000; }
+
+#contratoParaImpressao .assinaturas {
+    margin-top: 60px; /* Espaço antes das assinaturas */
+    /* display: flex; flex-wrap: wrap; justify-content: space-around; */ /* Para alinhar blocos lado a lado se couber */
+}
+#contratoParaImpressao .assinatura-bloco {
+    text-align: center;
+    margin-top: 20px; /* Espaço vertical entre assinaturas */
+    margin-bottom: 30px;
+    page-break-inside: avoid; /* Tentar não quebrar o bloco de assinatura */
+    width: 100%; /* Ocupa toda a largura para melhor controle de quebra */
+    /* width: 48%; display: inline-block; vertical-align:top; margin-right: 2%; */ /* Alternativa para lado a lado */
+}
+#contratoParaImpressao .assinatura-linha-vazia {
+    display: block;
+    height: 20px; /* Espaço para a assinatura manuscrita */
+    border-bottom: 1px solid #333; /* Linha para assinar */
+    margin: 40px auto 5px auto; /* Espaço acima da linha */
+    max-width: 350px; /* Largura da linha */
+}
+#contratoParaImpressao .assinatura-qualificacao {
+    display: block;
+    font-weight: normal;
+    margin-top: 5px;
+    font-size: 10pt;
+}
+#contratoParaImpressao .assinatura-testemunha .assinatura-qualificacao {
+    margin-top: 25px; /* Mais espaço para testemunhas */
+}
+#contratoParaImpressao .assinatura-testemunha .assinatura-linha-vazia {
+    margin-top: 5px;
+}
+
+
+#contratoParaImpressao .rodape-contrato {
+    font-size: 8pt;
+    color: #555;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px dashed #aaa;
+    padding-top: 10px;
+    page-break-before: auto;
+}
+#contratoParaImpressao .placeholder-highlight {
+    color: #D63300; /* Vermelho escuro para impressão */
+    /* background-color: #ffe0cc; */ /* Fundo laranja bem claro para destaque sutil */
+    font-weight: bold;
+    /* padding: 0 1px; */
+    /* border-radius: 2px; */
+}
+
+
+@media print {
+    body { /* Reset body para impressão, caso haja herança do tema escuro */
+        background: white !important;
+        color: black !important;
+        padding: 0;
+    }
+    .main-content, .site-footer, /* Elementos da UI do gerador */
+    .disclaimer-no-print, /* Disclaimer específico do gerador */
+    #contractForm, .actions, .form-persistence-actions, #posGeracao,
+    .container > h1, .container > p:first-of-type /* Título e parágrafo intro do gerador */
+    {
+        display: none !important;
+    }
+
+    #contratoParaImpressao {
+        display: block !important;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+    }
+    #contratoParaImpressao .contrato-container {
+        margin: 0;
+        padding: 1.8cm 1.5cm; /* Margens A4 para impressão */
+        border: none !important;
+        box-shadow: none !important;
+        width: 210mm; /* Forçar tamanho A4 */
+        min-height: 297mm; /* Forçar tamanho A4 */
+        height: auto; /* Para conteúdo maior que uma página */
+        page-break-after: auto;
+    }
+    @page {
+        size: A4;
+        margin: 0; /* Margens controladas pelo .contrato-container padding */
+    }
+    #contratoParaImpressao .placeholder-highlight {
+        color: #CC0000 !important; /* Vermelho mais forte para impressão */
+        background-color: transparent !important; /* Sem fundo na impressão */
+        font-weight: bold !important;
+    }
+}

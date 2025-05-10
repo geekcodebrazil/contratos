@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Contratos Inteligente - Dracula Neon</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- A fonte Orbitron já está inclusa via @import no style.css -->
+</head>
+<body>
+    <div class="main-content">
+        <div class="container">
+            <div class="disclaimer disclaimer-no-print">
+                <strong>AVISO IMPORTANTE:</strong> Este gerador de contratos fornece modelos e sugestões.
+                Os documentos gerados <strong>NÃO substituem o aconselhamento jurídico profissional.</strong>
+                Recomendamos enfaticamente que você <strong>consulte um(a) advogado(a)</strong> para revisar qualquer contrato
+                antes da assinatura, garantindo que ele atenda às suas necessidades específicas e esteja em conformidade
+                com a legislação vigente. O uso deste gerador é de sua inteira responsabilidade.
+            </div>
+
+            <h1>Gerador de Contratos Inteligente</h1>
+            <p style="text-align: center; font-size: 0.95em; color: var(--text-secondary); margin-bottom: 30px;">
+                Preencha os dados e edite os textos padrão das cláusulas conforme sua necessidade.<br>
+                Textos em <span style="color:var(--text-placeholder-highlight); font-weight:bold;">rosa neon</span> no formulário são sugestões editáveis.
+            </p>
+
+            <form id="contractForm">
+
+                <fieldset>
+                    <legend>1. Informações do Contratante</legend>
+                    <label for="contratante_nome">Nome Completo/Razão Social:</label>
+                    <input type="text" id="contratante_nome" name="contratante_nome" required>
+                    <label for="contratante_doc">CPF/CNPJ:</label>
+                    <input type="text" id="contratante_doc" name="contratante_doc" class="masked-input" required>
+                    <label for="contratante_endereco">Endereço Completo:</label>
+                    <input type="text" id="contratante_endereco" name="contratante_endereco" placeholder="Rua ABC, 123, Bairro, Cidade - UF, CEP 00000-000" required>
+                    <label for="contratante_telefone_whatsapp">Telefone (com DDD):</label>
+                    <input type="tel" id="contratante_telefone_whatsapp" name="contratante_telefone_whatsapp" class="masked-input" placeholder="Ex: 5511999998888">
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. Informações do Contratado(a)</legend>
+                    <label for="contratado_nome">Nome Completo/Razão Social:</label>
+                    <input type="text" id="contratado_nome" name="contratado_nome" required>
+                    <label for="contratado_doc">CPF/CNPJ:</label>
+                    <input type="text" id="contratado_doc" name="contratado_doc" class="masked-input" required>
+                    <label for="contratado_endereco">Endereço Completo:</label>
+                    <input type="text" id="contratado_endereco" name="contratado_endereco" placeholder="Av. XYZ, 456, Centro, Cidade - UF, CEP 11111-111" required>
+                    <label for="contratado_telefone_whatsapp">Telefone (com DDD):</label>
+                    <input type="tel" id="contratado_telefone_whatsapp" name="contratado_telefone_whatsapp" class="masked-input" placeholder="Ex: 5521988887777">
+                </fieldset>
+
+                <fieldset>
+                    <legend>3. Detalhes Iniciais do Contrato</legend>
+                    <label for="tipo_contrato">Tipo de Contrato:</label>
+                    <select id="tipo_contrato" name="tipo_contrato" required>
+                        <option value="">-- Selecione o Tipo --</option>
+                        <option value="Prestação de Serviços">Prestação de Serviços</option>
+                        <option value="Compra e Venda">Compra e Venda</option>
+                        <option value="Locação (Aluguel)">Locação (Aluguel)</option>
+                        <option value="Parceria Comercial">Parceria Comercial</option>
+                        <option value="Confidencialidade (NDA)">Confidencialidade (NDA)</option>
+                        <option value="Mútuo">Mútuo (Empréstimo)</option>
+                        <option value="Comodato">Comodato (Empréstimo de Bem)</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                    <div id="tipo_contrato_outro_container" style="display:none; margin-top: -10px; margin-bottom: 15px;">
+                        <label for="tipo_contrato_outro" style="font-size:0.9em; margin-bottom:3px;">Especifique o tipo:</label>
+                        <input type="text" id="tipo_contrato_outro" name="tipo_contrato_outro" placeholder="Ex: Contrato de Doação, etc.">
+                    </div>
+
+                    <label for="objeto_contrato">
+                        Objeto Principal do Contrato:
+                        <span class="tooltip-icon">?
+                            <span class="tooltiptext">Descreva de forma clara e precisa o que está sendo contratado. Ex: Prestação de serviços de consultoria em TI, venda do veículo X, locação do imóvel Y.</span>
+                        </span>
+                    </label>
+                    <textarea id="objeto_contrato" name="objeto_contrato" rows="4" required></textarea>
+
+                    <div id="opcoes_prestacao_servicos" style="display:none;">
+                        <label for="servico_alto_risco">
+                            <input type="checkbox" id="servico_alto_risco" name="servico_alto_risco">
+                            Este serviço envolve atividades de alto risco (NRs)?
+                        </label>
+                        <small>Se marcado, cláusula específica de Segurança e Saúde no Trabalho (SST) será adicionada.</small>
+                    </div>
+                    
+                    <label for="valor_contrato">Valor Total do Contrato (R$):</label>
+                    <input type="text" id="valor_contrato" name="valor_contrato" class="masked-input" required placeholder="0,00">
+                    <label for="forma_pagamento_desc">Forma de Pagamento (detalhada):</label>
+                    <input type="text" id="forma_pagamento_desc" name="forma_pagamento_desc" placeholder="Ex: À vista via PIX CNPJ X; ou Entrada de Y e Z parcelas de W..." required>
+                    <label for="data_inicio">Data de Início da Vigência:</label>
+                    <input type="date" id="data_inicio" name="data_inicio" required>
+                    <label for="data_termino_tipo">Término da Vigência:</label>
+                    <select id="data_termino_tipo" name="data_termino_tipo">
+                        <option value="data_especifica">Data específica</option>
+                        <option value="indeterminado">Por tempo indeterminado</option>
+                    </select>
+                    <div id="data_termino_container" style="display:none; margin-top: -10px; margin-bottom: 15px;">
+                        <label for="data_termino" style="font-size:0.9em; margin-bottom:3px;">Data de Término Específica:</label>
+                        <input type="date" id="data_termino" name="data_termino">
+                    </div>
+                </fieldset>
+
+                <fieldset id="clausulas_contrato_container">
+                    <legend>4. Cláusulas do Contrato</legend>
+
+                    <div id="locacao_variaveis_container" class="clausula-variable-input-group" style="display:none;">
+                        <h4>Variáveis Específicas - Locação (Aluguel)</h4>
+                        <label for="locacao_valor_aluguel_mensal">Valor Mensal do Aluguel (R$):</label>
+                        <input type="text" id="locacao_valor_aluguel_mensal" name="locacao_valor_aluguel_mensal" class="masked-input" placeholder="0,00">
+                        <label for="locacao_dia_pagamento_aluguel">Dia para Pagamento do Aluguel (numeral):</label>
+                        <input type="number" id="locacao_dia_pagamento_aluguel" name="locacao_dia_pagamento_aluguel" min="1" max="31" value="5">
+                        <label for="locacao_forma_pagamento_aluguel">Forma de Pagamento do Aluguel:</label>
+                        <input type="text" id="locacao_forma_pagamento_aluguel" name="locacao_forma_pagamento_aluguel" placeholder="Ex: Depósito em Conta Corrente...">
+                        <label for="locacao_indice_reajuste">Índice de Reajuste Anual do Aluguel:</label>
+                        <input type="text" id="locacao_indice_reajuste" name="locacao_indice_reajuste" value="IGP-M/FGV" placeholder="Ex: IGP-M/FGV, IPCA/IBGE">
+                        
+                        <label for="locacao_tipo_garantia">Tipo de Garantia Locatícia:</label>
+                        <select id="locacao_tipo_garantia" name="locacao_tipo_garantia">
+                            <option value="Nenhuma">Nenhuma</option>
+                            <option value="Caução em Dinheiro">Caução em Dinheiro</option>
+                            <option value="Fiador">Fiador</option>
+                            <option value="Seguro Fiança">Seguro Fiança</option>
+                            <option value="Cessão Fiduciária de Quotas de Fundo de Investimento">Cessão Fiduciária de Quotas</option>
+                            <option value="Título de Capitalização">Título de Capitalização</option>
+                        </select>
+                        <div id="locacao_detalhes_garantia_container" style="display:none; margin-top:5px;">
+                            <label for="locacao_detalhes_garantia" style="font-size:0.9em; margin-bottom:3px;">Detalhes da Garantia:</label>
+                            <textarea id="locacao_detalhes_garantia" name="locacao_detalhes_garantia" rows="2" placeholder="Ex: Valor da caução, dados do fiador (nome, CPF), apólice do seguro..."></textarea>
+                        </div>
+                    </div>
+
+                    <div id="clausulas_especificas_prestação_de_serviços" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Prestação de Serviços</h4>
+                        <label for="clausula_obrigacoes_contratante_ps">Obrigações do Contratante:</label>
+                        <textarea id="clausula_obrigacoes_contratante_ps" name="clausula_obrigacoes_contratante_ps" rows="3"></textarea>
+                        <label for="clausula_obrigacoes_contratado_ps">Obrigações do Contratado(a):</label>
+                        <textarea id="clausula_obrigacoes_contratado_ps" name="clausula_obrigacoes_contratado_ps" rows="3"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_compra_e_venda" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Compra e Venda</h4>
+                        <label for="clausula_entrega_cv">Entrega do Bem:</label>
+                        <textarea id="clausula_entrega_cv" name="clausula_entrega_cv" rows="3"></textarea>
+                        <label for="clausula_garantia_cv">Garantia:</label>
+                        <textarea id="clausula_garantia_cv" name="clausula_garantia_cv" rows="3"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_locação_aluguel" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Locação (Aluguel)</h4>
+                        <label for="clausula_aluguel_encargos_loc">Aluguel e Encargos:</label>
+                        <textarea id="clausula_aluguel_encargos_loc" name="clausula_aluguel_encargos_loc" rows="4"></textarea>
+                        <label for="clausula_conservacao_uso_loc">Conservação e Uso do Imóvel:</label>
+                        <textarea id="clausula_conservacao_uso_loc" name="clausula_conservacao_uso_loc" rows="4"></textarea>
+                        <label for="clausula_garantia_locaticia_loc">Garantia Locatícia:</label>
+                        <textarea id="clausula_garantia_locaticia_loc" name="clausula_garantia_locaticia_loc" rows="3"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_parceria_comercial" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Parceria Comercial</h4>
+                        <label for="clausula_contribuicoes_pc">Contribuições das Partes:</label>
+                        <textarea id="clausula_contribuicoes_pc" name="clausula_contribuicoes_pc" rows="3"></textarea>
+                        <label for="clausula_resultados_responsabilidades_pc">Resultados e Responsabilidades:</label>
+                        <textarea id="clausula_resultados_responsabilidades_pc" name="clausula_resultados_responsabilidades_pc" rows="3"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_confidencialidade_nda" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Acordo de Confidencialidade (NDA)</h4>
+                        <label for="clausula_definicao_confidencial_nda">Definição de Informação Confidencial:</label>
+                        <textarea id="clausula_definicao_confidencial_nda" name="clausula_definicao_confidencial_nda" rows="4"></textarea>
+                        <label for="clausula_obrigacoes_receptor_nda">Obrigações da Parte Receptora:</label>
+                        <textarea id="clausula_obrigacoes_receptor_nda" name="clausula_obrigacoes_receptor_nda" rows="4"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_mútuo" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Mútuo (Empréstimo)</h4>
+                        <label for="clausula_devolucao_mutuo">Devolução do Valor/Bem Mutuado:</label>
+                        <textarea id="clausula_devolucao_mutuo" name="clausula_devolucao_mutuo" rows="3"></textarea>
+                        <label for="clausula_juros_encargos_mutuo">Juros e Encargos (se houver):</label>
+                        <textarea id="clausula_juros_encargos_mutuo" name="clausula_juros_encargos_mutuo" rows="3"></textarea>
+                    </div>
+                    <div id="clausulas_especificas_comodato" class="clausulas-especificas-container">
+                        <h4>Cláusulas Específicas: Comodato (Empréstimo de Bem)</h4>
+                        <label for="clausula_prazo_comodato">Prazo do Comodato:</label>
+                        <textarea id="clausula_prazo_comodato" name="clausula_prazo_comodato" rows="3"></textarea>
+                        <label for="clausula_obrigacoes_comodatario_comodato">Obrigações do Comodatário(a):</label>
+                        <textarea id="clausula_obrigacoes_comodatario_comodato" name="clausula_obrigacoes_comodatario_comodato" rows="4"></textarea>
+                    </div>
+                    
+                    <div class="clausulas-gerais-container" style="margin-top: 25px; padding-top:20px; border-top: 1px dashed var(--medium-gray);">
+                        <h4 style="font-size: 1.2em; color: var(--accent-green); margin-bottom: 20px;">Cláusulas Gerais (Aplicáveis a todos os tipos)</h4>
+                        
+                        <div class="clausula-variable-input-group">
+                            <label for="rescisao_aviso_previo_dias">Aviso prévio para rescisão (dias):</label>
+                            <input type="number" id="rescisao_aviso_previo_dias" name="rescisao_aviso_previo_dias" value="30" min="0">
+                            <label for="rescisao_multa_percentual">Multa por descumprimento (% do valor remanescente):</label>
+                            <input type="number" id="rescisao_multa_percentual" name="rescisao_multa_percentual" value="10" min="0" max="100">
+                        </div>
+                        <label for="clausula_rescisao" class="clausula-geral-label">Texto da Cláusula de Rescisão Contratual:</label>
+                        <textarea id="clausula_rescisao" name="clausula_rescisao" rows="3" class="clausula-geral-field"></textarea>
+
+                        <label for="clausula_notificacoes" class="clausula-geral-label">Comunicações e Notificações:</label>
+                        <textarea id="clausula_notificacoes" name="clausula_notificacoes" rows="2" class="clausula-geral-field"></textarea>
+                        <label for="clausula_alteracoes" class="clausula-geral-label">Alterações Contratuais:</label>
+                        <textarea id="clausula_alteracoes" name="clausula_alteracoes" rows="2" class="clausula-geral-field"></textarea>
+                        
+                        <div id="opcoes_lgpd" style="margin-top:15px; margin-bottom:15px; padding:15px;">
+                            <label for="incluir_clausula_lgpd">
+                                <input type="checkbox" id="incluir_clausula_lgpd" name="incluir_clausula_lgpd">
+                                Incluir Cláusula de Proteção de Dados (LGPD)?
+                            </label>
+                            <small>Adiciona uma cláusula padrão sobre conformidade com a Lei Geral de Proteção de Dados.</small>
+                            <div id="clausula_lgpd_texto_container" style="display:none; margin-top:10px;">
+                                <label for="clausula_lgpd_texto" class="clausula-geral-label" style="font-size:0.95em">Texto da Cláusula LGPD:</label>
+                                <textarea id="clausula_lgpd_texto" name="clausula_lgpd_texto" rows="3" class="clausula-geral-field"></textarea>
+                            </div>
+                        </div>
+
+                        <label for="clausulas_adicionais" class="clausula-geral-label">Outras Disposições Adicionais (opcional):</label>
+                        <textarea id="clausulas_adicionais" name="clausulas_adicionais" rows="3" placeholder="Insira aqui quaisquer outras condições específicas não cobertas."></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>5. Foro</legend>
+                    <label for="cidade_foro">Cidade do Foro (para dirimir disputas):</label>
+                    <input type="text" id="cidade_foro" name="cidade_foro" required placeholder="Ex: São Paulo">
+                    <label for="estado_foro">Estado (UF) do Foro:</label>
+                    <input type="text" id="estado_foro" name="estado_foro" class="masked-input" maxlength="2" required placeholder="Ex: SP">
+                </fieldset>
+
+                <div class="form-persistence-actions">
+                    <button type="button" id="btnSalvarProgresso" class="utility-button">Salvar Progresso</button>
+                    <button type="button" id="btnCarregarProgresso" class="utility-button">Carregar Progresso</button>
+                    <button type="button" id="btnLimparProgresso" class="utility-button danger">Limpar Progresso Salvo</button>
+                    <span id="save-feedback"></span>
+                </div>
+
+                <div class="actions">
+                    <button type="button" id="btnGerarContrato">Gerar Contrato</button>
+                    <button type="reset" id="btnLimparFormulario">Limpar Formulário</button>
+                </div>
+            </form>
+
+            <div id="posGeracao" style="display:none;">
+                <p><strong>Contrato gerado!</strong> Janela de impressão/visualização deve ter aberto.</p>
+                <p>Se não abriu, verifique o bloqueador de pop-ups. Salve como PDF na janela de impressão ou use os botões abaixo.</p>
+                <button type="button" id="btnSalvarHtmlContrato" class="secondary-action">Baixar Contrato (HTML)</button>
+                <button type="button" id="btnCopiarConteudoContrato" class="tertiary-action">Copiar Conteúdo (Texto)</button>
+                <hr>
+                <p>Após salvar, envie via WhatsApp:</p>
+                <button type="button" id="btnEnviarWhatsAppContratante">Contactar Contratante</button>
+                <button type="button" id="btnEnviarWhatsAppContratado">Contactar Contratado(a)</button>
+                <p style="font-size: 0.9em; margin-top:10px; color: var(--light-gray);">Lembre-se de anexar o arquivo salvo na conversa.</p>
+            </div>
+
+            <div id="contratoParaImpressao">
+                <!-- Conteúdo do contrato gerado será inserido aqui -->
+            </div>
+        </div> <!-- /.container -->
+    </div> <!-- /.main-content -->
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="politica.html" target="_blank">Política de Privacidade</a>
+            <span>|</span>
+            <a href="servicos.html" target="_blank">Nossos Serviços</a>
+            <span>|</span>
+            <a href="sobre.html" target="_blank">Sobre Nós</a>
+            <span>|</span>
+            <a href="termos.html" target="_blank">Termos de Uso</a>
+            <span>|</span>
+            <a href="tutorial.html" target="_blank">Tutorial</a>
+            <span>|</span>
+            <a href="index.html">Início</a> <!-- Link para a própria página, pode ser # ou o nome do arquivo -->
+        </div>
+        <p style="margin-top:15px; font-size:0.85em; color:var(--light-gray)">&copy; <span id="currentYear"></span> Gerador de Contratos Inteligente. Todos os direitos (quase) reservados.</p>
+    </footer>
+    
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
